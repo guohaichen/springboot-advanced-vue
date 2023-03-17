@@ -1,6 +1,6 @@
 <template>
   <div>
-    <h1>Welcome to HomePage!</h1>
+    <h1>HomePage!</h1>
     <router-link to="/">Go back to MainPage</router-link>
   </div>
 </template>
