@@ -6,6 +6,8 @@
     <h3 v-for="one in list" :key="one.id">
       {{ one.name }}
     </h3>
+    <!--  路由  -->
+    <router-view></router-view>
   </div>
 </template>
 

@@ -26,3 +26,8 @@ See [Configuration Reference](https://cli.vuejs.org/config/).
 
 font-end dev about myself web
 
+#### 安装axios
+#### 安装element_ui
+npm i element-ui -S
+#### 安装vue-router
+npm install vue-router
