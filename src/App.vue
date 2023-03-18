@@ -1,36 +1,20 @@
 <template>
   <div id="app">
-    <HelloWorld msg="SeaLand's notes"/>
+    <!--    <HelloWorld msg="SeaLand's Tree Hole"/>-->
     <!--    <el-button type="primary" @click="getData">get</el-button>
         <h3 v-for="one in list" :key="one.id">
           {{ one.name }}
         </h3>-->
     <!--  路由  -->
-
-    <el-container>
-      <el-aside width="150px"><Menu/></el-aside>
-
-      <el-container>
-        <el-header>header</el-header>
-        <el-main><router-view></router-view></el-main>
-        <el-footer>footer</el-footer>
-      </el-container>
-
-    </el-container>
-
+    <router-view></router-view>
   </div>
 </template>
 
 <script>
-import HelloWorld from './components/HelloWorld.vue'
 import axios from "@/components/api/axios";
-import Menu from "@/views/menu/Menu";
-
 export default {
   name: 'App',
   components: {
-    HelloWorld,
-    Menu
   },
   data() {
     return {
@@ -51,15 +35,19 @@ export default {
   }
 }
 </script>
-
 <style>
+* {
+  margin: 0;
+  padding: 0;
+}
+
 #app {
   font-family: Avenir, Helvetica, Arial, sans-serif;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
   text-align: center;
   color: #2c3e50;
-  margin-top: 60px;
+  margin-top: 20px;
 }
 
 .el-header, .el-footer {
@@ -85,6 +73,11 @@ export default {
 
 body > .el-container {
   margin-bottom: 40px;
+  display: flex;
+  flex-direction: column;
+  height: calc(100vh - 60px);
+  overflow-y: hidden;
+
 }
 
 .el-container:nth-child(5) .el-aside,

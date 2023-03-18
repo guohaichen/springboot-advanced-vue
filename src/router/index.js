@@ -5,6 +5,8 @@ import VueRouter from 'vue-router'
 import Main from "@/views/Main";
 import Login from "@/views/Login";
 import Home from "@/views/Home";
+import HelloWorld from "@/components/HelloWorld.vue";
+// import App from "@/App.vue";
 
 Vue.use(VueRouter)
 
@@ -12,16 +14,23 @@ Vue.use(VueRouter)
 const routes = [
     {
         path: "/",
-        component: Main
+        component: Main,
+        children: [
+            {
+                path: "/home",
+                component: Home,
+            },
+            {
+                path: "/helloWorld",
+                component: HelloWorld
+            }
+        ],
     },
     {
+        /*设置login页面不包含在App.vue的页面布局中，因为App.vue设置了布局，通常登录页面是不需要布局的*/
         path: "/login",
-        component: Login
+        component: Login,
     },
-    {
-        path: "/home",
-        component: Home
-    }
 ]
 //3.创建路由实例并传递‘routes’配置
 const router = new VueRouter({

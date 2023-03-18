@@ -22,7 +22,6 @@
         <el-button type="success" round>注册</el-button>
       </el-form>
     </div>
-
   </div>
 </template>
 
