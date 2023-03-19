@@ -7,19 +7,20 @@
         <div :class="['container', 'container-register', { 'is-txl': isLogin }]">
           <form>
             <h2 class="title">注册来聊聊你的故事吧！</h2>
-            <input class="form__input" type="text" placeholder="Username"/>
-            <input class="form__input" type="password" placeholder="Password"/>
+            <input class="form__input" type="text" placeholder="Username" v-model="model.username"/>
+            <input class="form__input" type="password" placeholder="Password" v-model="model.password"/>
             <div class="primary-btn">注册</div>
           </form>
         </div>
         <div
             :class="['container', 'container-login', { 'is-txl is-z200': isLogin }]"
         >
-          <form>
+          <form @>
             <h2 class="title">SeaLand's tree Hole</h2>
-            <input class="form__input" type="text" placeholder="Username"/>
-            <input class="form__input" type="password" placeholder="Password"/>
-            <router-link to="/home" class="primary-btn" style="text-decoration: none">登录</router-link>
+            <input class="form__input" type="text" placeholder="Username" v-model="model.username"/>
+            <input class="form__input" type="password" placeholder="Password" v-model="model.password"/>
+<!--            <router-link @click="login" to="/home" class="primary-btn" style="text-decoration: none">登录</router-link>-->
+            <div class="primary-btn" @click="login">登录</div>
           </form>
         </div>
         <div :class="['switch', { login: isLogin }]">
@@ -45,9 +46,12 @@
 </template>
 
 <script>
+import axios from "@/components/api/axios";
+
 export default {
   data() {
     return {
+      model: {},
       isLogin: false,
       loginForm: {
         email: '',
@@ -62,6 +66,16 @@ export default {
   },
   methods: {
     login() {
+      axios.post('/auth/login', {
+        username: this.model.username,
+        password: this.model.password
+      })
+          .then(response=>{
+            console.log(response)
+          })
+          .catch(error=>{
+            console.log(error);
+          })
     },
     register() {
     },

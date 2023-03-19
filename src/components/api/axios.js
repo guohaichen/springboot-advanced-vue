@@ -7,5 +7,18 @@ const instance = axios.create({
         'Content-Type': 'application/json'
     }
 });
+//在前段发送请求时，可以在请求拦截器中设置请求头；将token作为请求的一部分发送给后端
+instance.interceptors.request.use(
+    (config) => {
+        const token = localStorage.getItem("token");
+        if (token) {
+            config.headers.Authorization = `Bearer${token}`;
+        }
+        return config;
+    },
+    (error) => {
+        return Promise.reject(error)
+    }
+)
 
 export default instance;

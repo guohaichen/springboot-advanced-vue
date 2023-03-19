@@ -5,7 +5,7 @@ import VueRouter from 'vue-router'
 import Main from "@/views/Main";
 import Login from "@/views/Login";
 import Home from "@/views/Home";
-import HelloWorld from "@/components/HelloWorld.vue";
+import HelloWorld from "@/views/HelloWorld.vue";
 import Registry from "@/views/Registry.vue";
 // import App from "@/App.vue";
 
