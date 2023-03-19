@@ -6,6 +6,7 @@ import Main from "@/views/Main";
 import Login from "@/views/Login";
 import Home from "@/views/Home";
 import HelloWorld from "@/components/HelloWorld.vue";
+import Registry from "@/views/Registry.vue";
 // import App from "@/App.vue";
 
 Vue.use(VueRouter)
@@ -31,6 +32,10 @@ const routes = [
         path: "/login",
         component: Login,
     },
+    {
+        path: "/registry",
+        component:Registry
+    }
 ]
 //3.创建路由实例并传递‘routes’配置
 const router = new VueRouter({
