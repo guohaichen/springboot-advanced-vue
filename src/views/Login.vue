@@ -31,7 +31,7 @@
             <p>
               {{
                 isLogin
-                    ? '相见恨晚,速来！'
+                    ? '相见恨晚！'
                     : '马上行动！'
               }}
             </p>
@@ -76,6 +76,9 @@ export default {
               console.log("response.success")
               localStorage.setItem('token',response.data.data)
               this.$router.push("/home")
+            }else {
+              this.$message.error("用户名或密码错误！")
+              this.model=''
             }
           })
           .catch(error=>{
