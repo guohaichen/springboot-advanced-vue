@@ -4,10 +4,10 @@ const instance = axios.create({
     baseURL: "http://localhost:9090",
     timeout: 10000,
     headers: {
-        'Content-Type': 'application/json'
-    }
+        'Content-Type': 'application/json',
+    },
 });
-//在前段发送请求时，可以在请求拦截器中设置请求头；将token作为请求的一部分发送给后端
+//在前端发送请求时，可以在请求拦截器中设置请求头；将token作为请求的一部分发送给后端 格式 Authorization:token
 instance.interceptors.request.use(
     (config) => {
         const token = localStorage.getItem("token");

@@ -31,8 +31,8 @@
             <p>
               {{
                 isLogin
-                    ? 'Enter your personal details and start journey with us'
-                    : 'To keep connected with us please login with your personal info'
+                    ? '相见恨晚,速来！'
+                    : '马上行动！'
               }}
             </p>
             <div class="primary-btn" @click="isLogin = !isLogin">
@@ -52,7 +52,7 @@ export default {
   data() {
     return {
       model: {},
-      isLogin: false,
+      isLogin: true,
       loginForm: {
         email: '',
         password: '',
@@ -71,7 +71,12 @@ export default {
         password: this.model.password
       })
           .then(response=>{
-            console.log(response)
+            //登录成功，跳转home页
+            if (response.data.success){
+              console.log("response.success")
+              localStorage.setItem('token',response.data.data)
+              this.$router.push("/home")
+            }
           })
           .catch(error=>{
             console.log(error);
