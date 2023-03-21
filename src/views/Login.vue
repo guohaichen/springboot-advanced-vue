@@ -7,19 +7,20 @@
         <div :class="['container', 'container-register', { 'is-txl': isLogin }]">
           <form>
             <h2 class="title">注册来聊聊你的故事吧！</h2>
-            <input class="form__input" type="text" placeholder="Username" v-model="model.username"/>
-            <input class="form__input" type="password" placeholder="Password" v-model="model.password"/>
-            <div class="primary-btn">注册</div>
+            <input class="form__input" type="text" placeholder="Username" v-model="registerForm.username"/>
+            <input class="form__input" type="password" placeholder="Phone" v-model="registerForm.phone"/>
+            <input class="form__input" type="password" placeholder="Password" v-model="registerForm.password"/>
+            <div class="primary-btn" @click="register">注册</div>
           </form>
         </div>
         <div
             :class="['container', 'container-login', { 'is-txl is-z200': isLogin }]"
         >
-          <form @>
+          <form>
             <h2 class="title">SeaLand's tree Hole</h2>
             <input class="form__input" type="text" placeholder="Username" v-model="model.username"/>
             <input class="form__input" type="password" placeholder="Password" v-model="model.password"/>
-<!--            <router-link @click="login" to="/home" class="primary-btn" style="text-decoration: none">登录</router-link>-->
+            <!--            <router-link @click="login" to="/home" class="primary-btn" style="text-decoration: none">登录</router-link>-->
             <div class="primary-btn" @click="login">登录</div>
           </form>
         </div>
@@ -58,8 +59,8 @@ export default {
         password: '',
       },
       registerForm: {
-        name: '',
-        email: '',
+        username: '',
+        phone: '',
         password: '',
       },
     }
@@ -70,22 +71,34 @@ export default {
         username: this.model.username,
         password: this.model.password
       })
-          .then(response=>{
+          .then(response => {
             //登录成功，跳转home页
-            if (response.data.success){
+            if (response.data.success) {
               console.log("response.success")
-              localStorage.setItem('token',response.data.data)
+              localStorage.setItem('token', response.data.data)
               this.$router.push("/home")
-            }else {
+            } else {
               this.$message.error("用户名或密码错误！")
-              this.model=''
+              this.model = ''
             }
           })
-          .catch(error=>{
+          .catch(error => {
             console.log(error);
           })
     },
     register() {
+      axios.post('/auth/registry', {
+        username: this.registerForm.username,
+        password: this.registerForm.password,
+        phone: this.registerForm.phone
+      }).then(response => {
+        if (response.data.success) {
+          this.$message.success("注册成功，登录吧！")
+          this.isLogin = true
+        } else {
+          this.$message.error("注册失败，请重试")
+        }
+      })
     },
   },
 }

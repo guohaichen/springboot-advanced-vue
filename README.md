@@ -31,3 +31,7 @@ font-end dev about myself web
 npm i element-ui -S
 #### 安装vue-router
 npm install vue-router
+
+#### 安装 bcryptjs （密码加密算法）
+
+npm install bcryptjs

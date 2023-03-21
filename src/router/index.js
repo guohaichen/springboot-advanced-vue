@@ -48,6 +48,8 @@ const routes = [
 ]
 //3.创建路由实例并传递‘routes’配置
 const router = new VueRouter({
+    //mode默认为hash模式，当使用history时，URL会没有‘#看起来很正常。
+    mode:'history',
     routes //routes:routes的缩写。
 })
 router.beforeEach((to, from, next) => {
