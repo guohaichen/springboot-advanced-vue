@@ -2,8 +2,9 @@
   <div class="hello">
     <h1>{{ msg }}</h1>
     <h2>hello world</h2>
-    <el-button @click="testToken" type="primary">测试按钮</el-button>
-    <el-button @click="testBcrybt('cm129911')" type="primary">加密测试</el-button>
+    <el-button @click="testToken" type="primary">token测试</el-button>
+    <el-button @click="verifyToken" type="primary">token解析</el-button>
+    <el-button @click="testBcrypt('cm129911')" type="primary">加密测试</el-button>
     <h2>欢迎你，你的token为{{ model.token }}</h2>
   </div>
 </template>
@@ -27,7 +28,7 @@ export default {
   },
   methods: {
     testToken() {
-      axios.get("/user/get").then(
+      axios.get("/user/get/token").then(
           response => {
             this.model.token = response.data
           })
@@ -35,7 +36,16 @@ export default {
             console.log(error)
           })
     },
-    testBcrybt(pwd){
+    verifyToken(){
+      axios.get("/user/token/verify").then(
+          response => {
+            console.log(response.data);
+          })
+          .catch(error => {
+            console.log(error)
+          })
+    },
+    testBcrypt(pwd){
       console.log(pwd,"加密后");
       const salt = "$2a$10$bsNHD51BJgCuW0nFOo.6de"
       let password =  bcrypt.hash(pwd,salt)

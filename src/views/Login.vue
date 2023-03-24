@@ -13,13 +13,11 @@
             <div class="primary-btn" @click="register">注册</div>
           </form>
         </div>
-        <div
-            :class="['container', 'container-login', { 'is-txl is-z200': isLogin }]"
-        >
+        <div :class="['container', 'container-login', { 'is-txl is-z200': isLogin }]">
           <form>
             <h2 class="title">SeaLand's tree Hole</h2>
-            <input class="form__input" type="text" placeholder="Username" v-model="model.username"/>
-            <input class="form__input" type="password" placeholder="Password" v-model="model.password"/>
+            <input class="form__input" type="text" placeholder="Username" v-model="loginForm.username" autocomplete />
+            <input class="form__input" type="password" placeholder="Password" v-model="loginForm.password" autocomplete />
             <!--            <router-link @click="login" to="/home" class="primary-btn" style="text-decoration: none">登录</router-link>-->
             <div class="primary-btn" @click="login">登录</div>
           </form>
@@ -29,15 +27,8 @@
           <div class="switch__circle switch__circle_top"></div>
           <div class="switch__container">
             <h2>{{ isLogin ? 'Hello Friend !' : 'Welcome Back !' }}</h2>
-            <p>
-              {{
-                isLogin
-                    ? '相见恨晚！'
-                    : '马上行动！'
-              }}
-            </p>
-            <div class="primary-btn" @click="isLogin = !isLogin">
-              {{ isLogin ? '注册' : '登录' }}
+            <p>{{ isLogin ? '相见恨晚！' : '马上行动！' }}</p>
+            <div class="primary-btn" @click="isLogin = !isLogin">{{ isLogin ? '注册' : '登录' }}
             </div>
           </div>
         </div>
@@ -68,8 +59,8 @@ export default {
   methods: {
     login() {
       axios.post('/auth/login', {
-        username: this.model.username,
-        password: this.model.password
+        username: this.loginForm.username,
+        password: this.loginForm.password
       })
           .then(response => {
             //登录成功，跳转home页

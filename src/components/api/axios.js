@@ -23,12 +23,16 @@ instance.interceptors.request.use(
 )
 
 //响应拦截器,如果服务器返回响应状态码为401，代表未授权，需要登录
-axios.interceptors.response.use(
-    response=>response,
-    error=>{
-        if (error.response.code===401){
+instance.interceptors.response.use(
+    response => response,
+    error => {
+        if (error.response.status === 401) {
+            router.push("/login").then(r => r)
+        } else if (error.response.status === 500) {
+            console.log("500");
             router.push("/login").then(r => r)
         }
+        console.log(error)
         return Promise.reject(error)
     }
 )
