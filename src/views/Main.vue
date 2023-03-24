@@ -2,16 +2,17 @@
   <div>
     <el-container>
       <el-aside>
-        <Menu/>
       </el-aside>
       <el-container>
         <el-header>
           <span style="font-size: 20px ;font-weight: bolder ;font-family: 宋体,serif;">SeaLand's Tree Hole</span>
-<!--          <router-link tag="button" to="/login" class="el-button el-button&#45;&#45;success">未登录</router-link>-->
+          <!--          <router-link tag="button" to="/login" class="el-button el-button&#45;&#45;success">未登录</router-link>-->
         </el-header>
-        <el-main>
-
-          <router-view></router-view>
+        <Menu/>
+        <el-main style="padding: 0">
+          <div class="container">
+            <router-view></router-view>
+          </div>
 
         </el-main>
         <el-footer>
@@ -32,5 +33,23 @@ export default {
 </script>
 
 <style scoped>
+* {
+  margin: 0;
+  padding: 0;
+}
+.el-aside{
+  background: #c9f08e;
+}
+.el-header{
+  background: #8e98f0;
+}
+.container{
+  margin: 10px;
+  background: #8de3c9;
+}
+.el-footer{
+  background: #f0e68e;
+  color: #fff;
+}
 
 </style>

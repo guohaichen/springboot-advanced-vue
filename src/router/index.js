@@ -7,6 +7,8 @@ import Login from "@/views/Login";
 import Home from "@/views/Home";
 import HelloWorld from "@/views/HelloWorld.vue";
 import Registry from "@/views/Registry.vue";
+import Photography from "@/views/photography/Photography";
+import PhotographyBase from "@/views/photography/PhotographyBase";
 // import App from "@/App.vue";
 
 Vue.use(VueRouter)
@@ -23,6 +25,14 @@ const routes = [
                 meta: {
                     requireAuth: true,  // 表示进入这个路由需要登录
                 }
+            },
+            {
+                path:"/photography",
+                component: Photography,
+            },
+            {
+                path:"/photographyBase",
+                component: PhotographyBase
             },
             {
                 path: "/helloWorld",
