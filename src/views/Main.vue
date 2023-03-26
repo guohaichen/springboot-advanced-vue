@@ -39,6 +39,7 @@ export default {
 }
 .el-aside{
   background: #c9f08e;
+  max-width: 100px;
 }
 .el-header{
   background: #8e98f0;
