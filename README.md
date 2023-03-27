@@ -33,5 +33,10 @@ npm i element-ui -S
 npm install vue-router
 
 #### 安装 bcryptjs （密码加密算法）
-
 npm install bcryptjs
+
+#### 安装md文件的渲染依赖(本地md)
+yarn add vue-markdown-loader -D
+#### 安装github-markdown-css、highlight.js样式
+yarn add github-markdown-css  -D
+yarn add highlight.js  -D

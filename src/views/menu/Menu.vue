@@ -33,7 +33,7 @@
       </template>
       <el-menu-item index="/helloWorld">HelloWorld</el-menu-item>
     </el-submenu>
-    <el-menu-item index="3">
+    <el-menu-item index="/bookNotes">
       <i class="el-icon-reading"></i>
       <span slot="title">读书笔记</span>
     </el-menu-item>

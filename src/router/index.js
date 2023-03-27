@@ -9,6 +9,7 @@ import HelloWorld from "@/views/HelloWorld.vue";
 import Registry from "@/views/Registry.vue";
 import Photography from "@/views/photography/Photography";
 import PhotographyBase from "@/views/photography/PhotographyBase";
+import BookNotes from "@/views/bookNotes/BookNotes";
 // import App from "@/App.vue";
 
 Vue.use(VueRouter)
@@ -40,7 +41,11 @@ const routes = [
                 meta: {
                     requireAuth: true,  // 表示进入这个路由需要登录
                 }
-            }
+            },
+            {
+                path:"/bookNotes",
+                component: BookNotes
+            },
         ],
     },
     {
