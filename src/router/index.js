@@ -10,6 +10,7 @@ import Registry from "@/views/Registry.vue";
 import Photography from "@/views/photography/Photography";
 import PhotographyBase from "@/views/photography/PhotographyBase";
 import BookNotes from "@/views/bookNotes/BookNotes";
+import TreeHole from "@/views/treeHole/TreeHole";
 // import App from "@/App.vue";
 
 Vue.use(VueRouter)
@@ -46,6 +47,10 @@ const routes = [
                 path:"/bookNotes",
                 component: BookNotes
             },
+            {
+                path:"/treeHole",
+                component: TreeHole
+            }
         ],
     },
     {
