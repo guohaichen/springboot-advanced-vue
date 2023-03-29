@@ -43,6 +43,8 @@ export default {
 }
 .el-header{
   background: #8e98f0;
+  text-align: center;
+  line-height: 60px;
 }
 .container{
   margin: 10px;
