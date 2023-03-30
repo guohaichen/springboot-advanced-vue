@@ -9,7 +9,7 @@
           <!--          <router-link tag="button" to="/login" class="el-button el-button&#45;&#45;success">未登录</router-link>-->
         </el-header>
         <Menu/>
-        <el-main style="padding: 0">
+        <el-main style="padding: 0;height: auto">
           <div class="container">
             <router-view></router-view>
           </div>

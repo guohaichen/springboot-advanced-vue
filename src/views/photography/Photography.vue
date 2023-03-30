@@ -20,6 +20,7 @@
       <el-button @click="isVisible=!isVisible" type="success" class="el-icon-plus"
                  style="padding:0;height: 32px;width: 80px;">发日常
       </el-button>
+      <el-button type="primary" class="el-icon-video-camera" @click="getPhotography">查询测试</el-button>
     </div>
     <!--    摄影分享页先设置8个布局存放照片，并加上分页标签，后续改造鼠标滑动加载更多-->
     <!--    <el-image style="width:348px;height:auto;border:1px;padding: 2px" v-for="(image, index) in pictures" :key="index"
@@ -27,7 +28,7 @@
     <el-row>
       <el-col :span="8" v-for="index in pictures" :key="index">
         <el-card :body-style="{ padding: '10px'}">
-          <img :src=pictures[2] class="image" alt="图片出错" >
+          <img :src=pictures[2] class="image" alt="图片出错">
           <div style="padding: 2px;border:1px solid rebeccapurple;line-height: 24px">
             <div>
               <p style="float:left;font-size: 14px;">desc:....一段描述</p>
@@ -61,6 +62,7 @@ import p2 from '../../assets/20220115080153IMG0879.jpg'
 import p3 from '../../assets/20220115081015IMG0941.jpg'
 import p4 from '../../assets/20220115084311IMG1010.jpg'
 import p5 from '../../assets/20220115084312IMG1011.jpg'
+import axios from "@/components/api/axios";
 
 export default {
   components: {DrawerModel},
@@ -92,6 +94,12 @@ export default {
     showByType(label) {
       console.log(label)
     },
+    getPhotography() {
+      axios.get('/share/photography')
+          .then((resp) => {
+            console.log(resp.data)
+          })
+    }
   }
 }
 </script>
