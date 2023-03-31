@@ -13,7 +13,9 @@
       </el-form-item>
       <!--  图片上传且含缩略图    -->
       <el-upload
-          action=""
+          :action="url"
+          :headers="headers"
+          :data="data"
           list-type="picture-card"
           :on-preview="handlePictureCardPreview"
           :on-remove="handleRemove">
@@ -45,7 +47,15 @@ export default {
   },
   data() {
     return {
+      //上传参数
+      data: {
+        path: "人像摄影"
+      },
+      headers: {
+        Authorization: localStorage.getItem("token")
+      },
       form: {},
+      url: 'http://localhost:9090/common/uploadFile',
       isShowDrawer: this.drawerVisible,
       direction: 'rtl',
       //图片上传相关

@@ -16,11 +16,11 @@
       <el-input v-model="search.tag" placeholder="请输入要搜索的标签"
                 style="width:200px;margin:0 10px;height: 32px;line-height: 32px;">
         <i slot="prefix" class="el-input__icon el-icon-search" style="line-height: 32px"></i></el-input>
-      <el-button type="primary" class="el-icon-search" style="padding:0;height: 32px;width: 80px">查找</el-button>
+      <el-button type="primary" class="el-icon-search" style="padding:0 10px;height: 32px;">查找</el-button>
       <el-button @click="isVisible=!isVisible" type="success" class="el-icon-plus"
-                 style="padding:0;height: 32px;width: 80px;">发日常
+                 style="padding:0 10px;height: 32px;">发日常
       </el-button>
-      <el-button type="primary" class="el-icon-video-camera" @click="getPhotography">查询测试</el-button>
+      <el-button type="primary" class="el-icon-video-camera" @click="getPhotography" style="padding:0;height: 32px;width:100px">查询测试</el-button>
     </div>
     <!--    摄影分享页先设置8个布局存放照片，并加上分页标签，后续改造鼠标滑动加载更多-->
     <!--    <el-image style="width:348px;height:auto;border:1px;padding: 2px" v-for="(image, index) in pictures" :key="index"
@@ -28,7 +28,8 @@
     <el-row>
       <el-col :span="8" v-for="index in pictures" :key="index">
         <el-card :body-style="{ padding: '10px'}">
-          <img :src=pictures[2] class="image" alt="图片出错">
+<!--          <img :src=index class="image" alt="图片出错">-->
+          <img :src=pictures[6] class="image" alt="图片出错">
           <div style="padding: 2px;border:1px solid rebeccapurple;line-height: 24px">
             <div>
               <p style="float:left;font-size: 14px;">desc:....一段描述</p>
@@ -56,7 +57,7 @@
 
 
 <script>
-import DrawerModel from "@/views/drawer/DrawerModel";
+import DrawerModel from "@/views/photography/PhotographyShare";
 import p1 from '../../assets/20220115080115IMG0869.jpg'
 import p2 from '../../assets/20220115080153IMG0879.jpg'
 import p3 from '../../assets/20220115081015IMG0941.jpg'
@@ -94,8 +95,8 @@ export default {
     showByType(label) {
       console.log(label)
     },
-    getPhotography() {
-      axios.get('/share/photography')
+    async getPhotography() {
+      await axios.get('/share/photography')
           .then((resp) => {
             console.log(resp.data)
           })

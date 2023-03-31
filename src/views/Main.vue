@@ -5,7 +5,7 @@
       </el-aside>
       <el-container>
         <el-header>
-          <span style="font-size: 20px ;font-weight: bolder ;font-family: 宋体,serif;">SeaLand's Tree Hole</span>
+          <span style="font-size: 20px ;font-weight: bolder ;font-family: 宋体,serif;">小小的树洞</span>
           <!--          <router-link tag="button" to="/login" class="el-button el-button&#45;&#45;success">未登录</router-link>-->
         </el-header>
         <Menu/>
