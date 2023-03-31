@@ -16,7 +16,7 @@
     <el-submenu index="1">
       <template slot="title">
         <i class="el-icon-coffee-cup"></i>
-        <span slot="title">AboutMe</span>
+        <span slot="title">日常分享</span>
       </template>
       <el-menu-item index="/home">描述列表</el-menu-item>
       <el-menu-item index="/photographyBase">摄影基础</el-menu-item>
@@ -37,7 +37,7 @@
       <i class="el-icon-reading"></i>
       <span slot="title">读书笔记</span>
     </el-menu-item>
-    <el-menu-item index="4">
+    <el-menu-item index="/treeHole">
       <i class="el-icon-box"></i>
       <span slot="title">树洞</span>
     </el-menu-item>

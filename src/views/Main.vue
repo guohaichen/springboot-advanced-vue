@@ -5,11 +5,11 @@
       </el-aside>
       <el-container>
         <el-header>
-          <span style="font-size: 20px ;font-weight: bolder ;font-family: 宋体,serif;">SeaLand's Tree Hole</span>
+          <span style="font-size: 20px ;font-weight: bolder ;font-family: 宋体,serif;">小小的树洞</span>
           <!--          <router-link tag="button" to="/login" class="el-button el-button&#45;&#45;success">未登录</router-link>-->
         </el-header>
         <Menu/>
-        <el-main style="padding: 0">
+        <el-main style="padding: 0;height: auto">
           <div class="container">
             <router-view></router-view>
           </div>
@@ -43,6 +43,8 @@ export default {
 }
 .el-header{
   background: #8e98f0;
+  text-align: center;
+  line-height: 60px;
 }
 .container{
   margin: 10px;

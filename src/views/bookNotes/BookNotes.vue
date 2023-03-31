@@ -1,9 +1,18 @@
 <template>
-  <div>
+  <div style="height: auto">
     <h2>读书笔记</h2>
-    <div class="markdown-body" style="border:1px solid yellow;padding:20px 0;text-align: left">
-      <vue_notes/>
-    </div>
+    <el-collapse v-model="activeNames" @change="handleChange">
+      <el-collapse-item title="笔记1" style="font-size: 14px" name="1">
+        <div class="markdown-body" style="border:1px solid yellow;text-align: left">
+          <vue_notes/>
+        </div>
+      </el-collapse-item>
+      <el-collapse-item title="笔记2" name="2">
+        <div class="markdown-body" style="border:1px solid yellow;text-align: left">
+          <vue_notes/>
+        </div>
+      </el-collapse-item>
+    </el-collapse>
   </div>
 </template>
 
@@ -17,11 +26,21 @@ import 'highlight.js/styles/github.css'
 
 export default {
   data() {
-    return {}
+    return {
+      activeNames: [''],
+    };
   },
-  components: {vue_notes}
+  components: {vue_notes},
+  methods: {
+    handleChange(val) {
+      console.log(val);
+    }
+  }
 }
 </script>
 
 <style scoped>
+.el-collapse-item__header{
+  font-size:14px ;
+}
 </style>
