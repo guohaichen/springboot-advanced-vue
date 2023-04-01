@@ -29,7 +29,7 @@
       <el-col :span="8" v-for="index in pictures" :key="index">
         <el-card :body-style="{ padding: '10px'}">
 <!--          <img :src=index class="image" alt="图片出错">-->
-          <img :src=pictures[6] class="image" alt="图片出错">
+          <img :src=index class="image" alt="图片出错">
           <div style="padding: 2px;border:1px solid rebeccapurple;line-height: 24px">
             <div>
               <p style="float:left;font-size: 14px;">desc:....一段描述</p>

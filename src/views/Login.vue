@@ -66,7 +66,9 @@ export default {
             //登录成功，跳转home页
             if (response.data.success) {
               console.log("response.success")
-              localStorage.setItem('token', response.data.data)
+              localStorage.setItem('token', response.data.data.token)
+              localStorage.setItem("userInfo",JSON.stringify(response.data.data))
+              // console.log(response.data)
               this.$router.push("/home")
             } else {
               this.$message.error("用户名或密码错误！")
