@@ -2,7 +2,7 @@ import Vue from 'vue'
 //引入vue-router
 import VueRouter from 'vue-router'
 //1.导入路由组件
-import Main from "@/views/Main";
+/*import Main from "@/views/Main";
 import Login from "@/views/Login";
 import Home from "@/views/Home";
 import HelloWorld from "@/views/HelloWorld.vue";
@@ -11,7 +11,7 @@ import Photography from "@/views/photography/Photography";
 import PhotographyBase from "@/views/photography/PhotographyBase";
 import BookNotes from "@/views/bookNotes/BookNotes";
 import TreeHole from "@/views/treeHole/TreeHole";
-// import App from "@/App.vue";
+import App from "@/App.vue";*/
 
 Vue.use(VueRouter)
 
@@ -19,57 +19,67 @@ Vue.use(VueRouter)
 const routes = [
     {
         path: "/",
-        component: Main,
+        // component: Main,
+        //使用异步组件实现路由组建的懒加载。
+        component: () => import("@/views/Main"),
         children: [
             {
                 path: "/home",
-                component: Home,
+                // component: Home,
+                component: () => import("@/views/Home"),
                 meta: {
                     requireAuth: true,  // 表示进入这个路由需要登录
                 }
             },
             {
-                path:"/photography",
-                component: Photography,
+                path: "/photography",
+                // component: Photography,
+                component: () => import("@/views/photography/Photography")
             },
             {
-                path:"/photographyBase",
-                component: PhotographyBase
+                path: "/photographyBase",
+                // component: PhotographyBase
+                component: () => import("@/views/photography/PhotographyBase")
             },
             {
                 path: "/helloWorld",
-                component: HelloWorld,
+                // component: HelloWorld,
+                component: () => import("@/views/HelloWorld"),
                 meta: {
                     requireAuth: true,  // 表示进入这个路由需要登录
                 }
             },
             {
-                path:"/bookNotes",
-                component: BookNotes
+                path: "/bookNotes",
+                // component: BookNotes
+                component: () => import("@/views/bookNotes/BookNotes")
             },
             {
-                path:"/treeHole",
-                component: TreeHole
+                path: "/treeHole",
+                // component: TreeHole
+                component: () => import("@/views/treeHole/TreeHole")
             }
         ],
     },
     {
         /*设置login页面不包含在App.vue的页面布局中，因为App.vue设置了布局，通常登录页面是不需要布局的*/
         path: "/login",
-        component: Login,
+        // component: Login,
+        component: () => import("@/views/Login.vue"),
         meta: {
             requireAuth: false
         }
     },
     {
         path: "/registry",
-        component: Registry
+        // component: Registry
+        component: () => import("@/views/Registry")
     }
 ]
 //3.创建路由实例并传递‘routes’配置
 const router = new VueRouter({
     //mode默认为hash模式，当使用history时，URL会没有‘#看起来很正常。
-    mode:'history',
+    mode: 'history',
     routes //routes:routes的缩写。
 })
 router.beforeEach((to, from, next) => {
