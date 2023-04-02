@@ -74,7 +74,17 @@ const routes = [
         path: "/registry",
         // component: Registry
         component: () => import("@/views/Registry")
+    },
+    {
+        path:"/404",
+        component: ()=>import("@/views/404")
+    },
+    {
+        path: "*",
+        redirect: "/404"
     }
+
+
 ]
 //3.创建路由实例并传递‘routes’配置
 const router = new VueRouter({
