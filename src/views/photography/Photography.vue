@@ -20,7 +20,9 @@
       <el-button @click="isVisible=!isVisible" type="success" class="el-icon-plus"
                  style="padding:0 10px;height: 32px;">发日常
       </el-button>
-      <el-button type="primary" class="el-icon-video-camera" @click="getPhotography" style="padding:0;height: 32px;width:100px">查询测试</el-button>
+      <el-button type="primary" class="el-icon-video-camera" @click="getPhotography"
+                 style="padding:0;height: 32px;width:100px">查询测试
+      </el-button>
     </div>
     <!--    摄影分享页先设置8个布局存放照片，并加上分页标签，后续改造鼠标滑动加载更多-->
     <!--    <el-image style="width:348px;height:auto;border:1px;padding: 2px" v-for="(image, index) in pictures" :key="index"
@@ -28,8 +30,8 @@
     <el-row>
       <el-col :span="8" v-for="index in pictures" :key="index">
         <el-card :body-style="{ padding: '10px'}">
-<!--          <img :src=index class="image" alt="图片出错">-->
-          <img :src=index class="image" alt="图片出错">
+          <!--          <img :src=index class="image" alt="图片出错">-->
+          <img :src=10 class="image" alt="图片出错">
           <div style="padding: 2px;border:1px solid rebeccapurple;line-height: 24px">
             <div>
               <p style="float:left;font-size: 14px;">desc:....一段描述</p>
@@ -96,10 +98,13 @@ export default {
       console.log(label)
     },
     async getPhotography() {
-      await axios.get('/share/photography')
-          .then((resp) => {
-            console.log(resp.data)
-          })
+      try {
+        const resp = await axios.get('/share/photography')
+        console.log(resp)
+        return resp.data
+      } catch (e) {
+        console.error(e)
+      }
     }
   }
 }

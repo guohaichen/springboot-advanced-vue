@@ -17,8 +17,8 @@
 </template>
 
 <script>
-import vue_notes from 'I:\\java\\springboot-advanced\\ReadMe.md'
-// import vue_notes from 'F:\\gitHub\\springboot-advanced\\ReadMe.md'
+// import vue_notes from 'I:\\java\\springboot-advanced\\ReadMe.md'
+import vue_notes from 'F:\\gitHub\\springboot-advanced\\ReadMe.md'
 // markdown样式
 import 'github-markdown-css'
 // 代码高亮
