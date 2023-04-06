@@ -2,7 +2,7 @@
   <div>
     <DrawerModel :drawerVisible.sync="isVisible" :drawerTitle="drawerTitle"
                  @updateDrawer="isVisible=$event"></DrawerModel>
-    <h4 style="border:1px solid #b13939;line-height: 50px">摄影分享</h4>
+    <h4 style="border:1px solid #adb799;line-height: 50px">摄影分享</h4>
 
     <div class="tag-group">
       <el-tag style="margin-left:10px"
@@ -28,17 +28,17 @@
     <!--    <el-image style="width:348px;height:auto;border:1px;padding: 2px" v-for="(image, index) in pictures" :key="index"
                   :src="image.src" alt="图片"></el-image>-->
     <el-row>
-      <el-col :span="8" v-for="index in pictures" :key="index">
-        <el-card :body-style="{ padding: '10px'}">
+      <el-col :span="12" v-for="one in dataSource" :key="one.photographyId">
+        <el-card :body-style="{ padding: '10px'}" style="border:1px dotted rebeccapurple">
           <!--          <img :src=index class="image" alt="图片出错">-->
-          <img :src=10 class="image" alt="图片出错">
-          <div style="padding: 2px;border:1px solid rebeccapurple;line-height: 24px">
+          <img :src=one.imgUrl class="image" alt="图片出错">
+          <div style="padding: 2px;;line-height: 24px">
             <div>
-              <p style="float:left;font-size: 14px;">desc:....一段描述</p>
+              <p style="float:left;font-size: 16px;">description:{{one.description}}</p>
             </div>
             <el-row>
               <el-col :span="24">
-                <p style="font-size: 14px;float:left">author:</p><a href="">xxx</a>
+                <p style="font-size: 16px;float:left">author:<a href="">{{one.userId}}</a></p>
                 <el-button type="primary" icon="el-icon-star-on" class="button"></el-button>
                 <el-button type="primary" icon="el-icon-download" class="button"></el-button>
                 <!--                <el-button type="primary" icon="el-icon-medal" class="button"></el-button>-->
@@ -80,6 +80,8 @@ export default {
       pictures: [
         p1, p2, p3, p4, p5
       ],
+      dataSource:[],
+      //todo 这里应该由后端获取，获取一些热点tag
       items: [
         {type: '', label: '风景'},
         {type: 'success', label: '人像'},
@@ -100,8 +102,8 @@ export default {
     async getPhotography() {
       try {
         const resp = await axios.get('/share/photography')
-        console.log(resp)
-        return resp.data
+        console.log(resp.data)
+        this.dataSource = resp.data.data
       } catch (e) {
         console.error(e)
       }
@@ -115,7 +117,7 @@ export default {
 .tag-group {
   margin-top: 5px;
   margin-bottom: 5px;
-  border: 1px solid #cccc4d;
+  /*border: 1px solid #cccc4d;*/
   line-height: 50px;
   display: flex;
   flex-direction: row;

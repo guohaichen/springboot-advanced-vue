@@ -83,7 +83,7 @@ export default {
             console.log("cancel")
           })
     },
-    //图片上传相关
+    //移除图片
     handleRemove(file, fileList) {
       console.log(file, fileList);
     },
