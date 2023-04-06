@@ -43,7 +43,7 @@ export default {
 
 #app {
   /*font-family: Avenir, Helvetica, Arial, sans-serif;*/
-  font-family: "Arial", "Microsoft YaHei", "黑体", "宋体", sans-serif;
+  font-family: "黑体", "宋体", "Roboto", sans-serif;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
   text-align: center;
@@ -78,7 +78,6 @@ body > .el-container {
   flex-direction: column;
   height: calc(100vh - 60px);
   overflow-y: hidden;
-
 }
 
 .el-container:nth-child(5) .el-aside,
