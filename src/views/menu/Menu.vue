@@ -32,6 +32,7 @@
         <span slot="title">暂时测试</span>
       </template>
       <el-menu-item index="/helloWorld">HelloWorld</el-menu-item>
+      <el-menu-item index="/test"> test </el-menu-item>
     </el-submenu>
     <el-menu-item index="/bookNotes">
       <i class="el-icon-reading"></i>

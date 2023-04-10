@@ -21,17 +21,17 @@
                  style="padding:0 10px;height: 32px;">发日常
       </el-button>
       <el-button type="primary" class="el-icon-video-camera" @click="getPhotography"
-                 style="padding:0;height: 32px;width:100px">查询测试
+                 style="padding:0 20px;height: 32px;">查询
       </el-button>
     </div>
     <!--    摄影分享页先设置8个布局存放照片，并加上分页标签，后续改造鼠标滑动加载更多-->
     <!--    <el-image style="width:348px;height:auto;border:1px;padding: 2px" v-for="(image, index) in pictures" :key="index"
                   :src="image.src" alt="图片"></el-image>-->
     <el-row>
-      <el-col :span="12" v-for="one in dataSource" :key="one.photographyId">
-        <el-card :body-style="{ padding: '10px'}" style="border:1px dotted rebeccapurple">
-          <!--          <img :src=index class="image" alt="图片出错">-->
-          <img :src=one.imgUrl class="image" alt="图片出错">
+      <el-col :span="6" v-for="one in dataSource" :key="one.photographyId">
+        <el-card :body-style="{ padding: '10px'}" style="border:0px dotted rebeccapurple">
+          <!--    fit='contain' 整个对象在填充盒子的同事保留其长宽比      -->
+          <el-image :src=one.imgUrl  alt="图片出错" fit="contain" style="width:300px;height:200px"></el-image>
           <div style="padding: 2px;;line-height: 24px">
             <div>
               <p style="float:left;font-size: 16px;">description:{{one.description}}</p>
@@ -138,10 +138,5 @@ export default {
   padding: 5px;
   float: right;
   margin-left: 10px;
-}
-
-.image {
-  width: 100%;
-  display: block;
 }
 </style>

@@ -53,6 +53,7 @@ export default {
 .el-footer{
   background: #f0e68e;
   color: #fff;
+  line-height: 60px;
 }
 
 </style>

@@ -50,6 +50,13 @@ const routes = [
                 }
             },
             {
+                path: "/test",
+                component: () => import("@/views/test/Test"),
+                meta: {
+                    requireAuth: true,  // 表示进入这个路由需要登录
+                }
+            },
+            {
                 path: "/bookNotes",
                 // component: BookNotes
                 component: () => import("@/views/bookNotes/BookNotes")
