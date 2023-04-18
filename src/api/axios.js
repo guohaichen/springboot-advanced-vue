@@ -1,12 +1,14 @@
 import axios from 'axios';
 import router from "@/router";
+import { Message } from 'element-ui';
 //axios配置，可以设置基本的url、请求头、请求超时等参数
 const instance = axios.create({
     baseURL: "http://localhost:9090",
     timeout: 10000,
     headers: {
-        'Content-Type': 'application/json',
+        "Content-Type": "application/json; charset=UTF-8;"
     },
+    // withCredentials: true
 });
 //在前端发送请求时，可以在请求拦截器中设置请求头；将token作为请求的一部分发送给后端 格式 Authorization:token
 instance.interceptors.request.use(
@@ -29,10 +31,13 @@ instance.interceptors.response.use(
     response => response,
     error => {
         if (error.response.status === 401) {
+            Message.warning("请先登录!")
             router.push("/login").then(r => r)
         } else if (error.response.status === 500) {
             console.log("500");
             router.push("/login").then(r => r)
+        }else {
+            console.log("其他异常错误")
         }
         console.log(error)
         return Promise.reject(error)

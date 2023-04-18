@@ -31,14 +31,14 @@
       <el-col :span="6" v-for="one in dataSource" :key="one.photographyId">
         <el-card :body-style="{ padding: '10px'}" style="border:0px dotted rebeccapurple">
           <!--    fit='contain' 整个对象在填充盒子的同事保留其长宽比      -->
-          <el-image :src=one.imgUrl  alt="图片出错" fit="contain" style="width:300px;height:200px"></el-image>
+          <el-image :src=one.imgUrl alt="图片出错" fit="contain" style="width:300px;height:200px"></el-image>
           <div style="padding: 2px;;line-height: 24px">
             <div>
-              <p style="float:left;font-size: 16px;">description:{{one.description}}</p>
+              <p style="float:left;font-size: 16px;">description:{{ one.description }}</p>
             </div>
             <el-row>
               <el-col :span="24">
-                <p style="font-size: 16px;float:left">author:<a href="">{{one.userId}}</a></p>
+                <p style="font-size: 16px;float:left">author:<a href="">{{ one.userId }}</a></p>
                 <el-button type="primary" icon="el-icon-star-on" class="button"></el-button>
                 <el-button type="primary" icon="el-icon-download" class="button"></el-button>
                 <!--                <el-button type="primary" icon="el-icon-medal" class="button"></el-button>-->
@@ -65,7 +65,7 @@ import p2 from '../../assets/20220115080153IMG0879.jpg'
 import p3 from '../../assets/20220115081015IMG0941.jpg'
 import p4 from '../../assets/20220115084311IMG1010.jpg'
 import p5 from '../../assets/20220115084312IMG1011.jpg'
-import axios from "@/components/api/axios";
+import axios from "@/api/axios";
 
 export default {
   components: {DrawerModel},
@@ -80,7 +80,7 @@ export default {
       pictures: [
         p1, p2, p3, p4, p5
       ],
-      dataSource:[],
+      dataSource: [],
       //todo 这里应该由后端获取，获取一些热点tag
       items: [
         {type: '', label: '风景'},

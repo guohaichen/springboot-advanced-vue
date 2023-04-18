@@ -11,7 +11,7 @@
 </template>
 
 <script>
-import axios from "@/components/api/axios";
+import axios from "@/api/axios";
 
 export default {
   name: 'App',

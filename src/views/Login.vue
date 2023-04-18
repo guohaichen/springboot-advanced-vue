@@ -16,8 +16,9 @@
         <div :class="['container', 'container-login', { 'is-txl is-z200': isLogin }]">
           <form>
             <h2 class="title">SeaLand's tree Hole</h2>
-            <input class="form__input" type="text" placeholder="Username" v-model="loginForm.username" autocomplete />
-            <input class="form__input" type="password" placeholder="Password" v-model="loginForm.password" autocomplete />
+            <input class="form__input" type="text" placeholder="Username" v-model="loginForm.username" autocomplete/>
+            <input class="form__input" type="password" placeholder="Password" v-model="loginForm.password"
+                   autocomplete/>
             <!--            <router-link @click="login" to="/home" class="primary-btn" style="text-decoration: none">登录</router-link>-->
             <div class="primary-btn" @click="login">登录</div>
           </form>
@@ -38,7 +39,7 @@
 </template>
 
 <script>
-import axios from "@/components/api/axios";
+import axios from "@/api/axios";
 
 export default {
   data() {
@@ -58,17 +59,19 @@ export default {
   },
   methods: {
     login() {
-      axios.post('/auth/login', {
-        username: this.loginForm.username,
-        password: this.loginForm.password
+      if (this.loginForm.username === '' || this.loginForm.password === '') {
+        return this.$message.warning("用户名或密码不能为空!")
+      }
+      axios.post('/auth/loginByShiro', {
+        //去空格处理
+        username: this.loginForm.username.trim(),
+        password: this.loginForm.password.trim()
       })
           .then(response => {
             //登录成功，跳转home页
             if (response.data.success) {
-              console.log("response.success")
-              localStorage.setItem('token', response.data.data.token)
-              localStorage.setItem("userInfo",JSON.stringify(response.data.data))
-              // console.log(response.data)
+              localStorage.setItem('token', response.data.data)
+              // localStorage.setItem("userInfo",JSON.stringify(response.data.data)) 后端使用了shiro，改造中
               this.$router.push("/home")
             } else {
               this.$message.error("用户名或密码错误！")
@@ -80,7 +83,10 @@ export default {
           })
     },
     register() {
-      axios.post('/auth/registry', {
+      if (this.registerForm.username === '' || this.registerForm.password === '') {
+        return this.$message.warning("用户名或密码不能为空!")
+      }
+      axios.post('/auth/registryByShiro', {
         username: this.registerForm.username,
         password: this.registerForm.password,
         phone: this.registerForm.phone
