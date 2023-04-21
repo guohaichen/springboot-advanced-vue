@@ -74,7 +74,7 @@ export default {
               // localStorage.setItem("userInfo",JSON.stringify(response.data.data)) 后端使用了shiro，改造中
               this.$router.push("/home")
             } else {
-              this.$message.error("用户名或密码错误！")
+              this.$message.error(response.data.message)
               this.model = ''
             }
           })

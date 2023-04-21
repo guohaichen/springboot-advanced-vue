@@ -35,7 +35,7 @@ instance.interceptors.response.use(
             router.push("/login").then(r => r)
         } else if (error.response.status === 500) {
             console.log("500");
-            router.push("/login").then(r => r)
+            Message.warning("服务器错误!")
         }else {
             console.log("其他异常错误")
         }
