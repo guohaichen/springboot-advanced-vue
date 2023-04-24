@@ -27,8 +27,15 @@ instance.interceptors.request.use(
 )
 
 //响应拦截器,如果服务器返回响应状态码为401，代表未授权，需要登录
+//新增了全局统一异常处理，
 instance.interceptors.response.use(
-    response => response,
+    response => {
+      if (response.data.code===401){
+          Message.error("登录失效，请重新登录!")
+          router.push("/login").then(r=>r)
+      }
+      return response
+    },
     error => {
         if (error.response.status === 401) {
             Message.warning("请先登录!")

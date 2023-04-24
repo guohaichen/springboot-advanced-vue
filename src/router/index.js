@@ -44,7 +44,7 @@ const routes = [
             {
                 path: "/helloWorld",
                 // component: HelloWorld,
-                component: () => import("@/views/HelloWorld"),
+                component: () => import("@/views/test/HelloWorld"),
                 meta: {
                     requireAuth: true,  // 表示进入这个路由需要登录
                 }
