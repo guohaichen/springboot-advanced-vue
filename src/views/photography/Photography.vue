@@ -29,9 +29,9 @@
                   :src="image.src" alt="图片"></el-image>-->
     <el-row>
       <el-col :span="6" v-for="one in dataSource" :key="one.photographyId">
-        <el-card :body-style="{ padding: '10px'}" style="border:0px dotted rebeccapurple">
+        <el-card :body-style="{ padding: '10px'}" style="border:0 dotted rebeccapurple">
           <!--    fit='contain' 整个对象在填充盒子的同事保留其长宽比      -->
-          <el-image :src=one.imgUrl alt="图片出错" fit="contain" style="width:300px;height:200px"></el-image>
+          <el-image :src=one.imgUrl alt="图片出错" fit="contain" style="width:400px;height:auto"></el-image>
           <div style="padding: 2px;;line-height: 24px">
             <div>
               <p style="float:left;font-size: 16px;">description:{{ one.description }}</p>

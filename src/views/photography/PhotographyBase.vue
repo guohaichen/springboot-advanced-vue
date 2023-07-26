@@ -2,7 +2,7 @@
   <div>
     <h4 style="border:1px solid #b13939;line-height: 50px">摄影基础</h4>
     <!--      <el-col :span="8" v-for="(o, index) in 2" :key="o" :offset="index > 0 ? 2 : 0">-->
-
+    <img :src="p1" width="600" alt="图片出错">
   </div>
 </template>
 

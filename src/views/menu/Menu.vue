@@ -1,10 +1,10 @@
 <template>
-<!--  <div>
-    <el-radio-group v-model="isCollapse" style="">
-      <el-radio-button :label="false">展开</el-radio-button>
-      <el-radio-button :label="true">收起</el-radio-button>
-    </el-radio-group>
-  </div>-->
+  <!--  <div>
+      <el-radio-group v-model="isCollapse" style="">
+        <el-radio-button :label="false">展开</el-radio-button>
+        <el-radio-button :label="true">收起</el-radio-button>
+      </el-radio-group>
+    </div>-->
   <el-menu
       router
       :default-active="this.$router.path"
@@ -32,7 +32,8 @@
         <span slot="title">暂时测试</span>
       </template>
       <el-menu-item index="/helloWorld">HelloWorld</el-menu-item>
-      <el-menu-item index="/test"> test </el-menu-item>
+      <el-menu-item index="/test"> Test</el-menu-item>
+      <el-menu-item index="/uploadVideo">视频上传</el-menu-item>
     </el-submenu>
     <el-menu-item index="/bookNotes">
       <i class="el-icon-reading"></i>

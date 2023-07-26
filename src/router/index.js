@@ -57,6 +57,10 @@ const routes = [
                 }
             },
             {
+                path: "/uploadVideo",
+                component: () => import("@/views/test/UploadVideo"),
+            },
+            {
                 path: "/bookNotes",
                 // component: BookNotes
                 component: () => import("@/views/bookNotes/BookNotes")
@@ -83,13 +87,13 @@ const routes = [
         component: () => import("@/views/Registry")
     },
     {
-        path:"/404",
-        component: ()=>import("@/views/404")
+        path: "/404",
+        component: () => import("@/views/404")
     },
-    {
+    /*{
         path: "*",
         redirect: "/404"
-    }
+    }*/
 
 
 ]

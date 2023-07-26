@@ -16,7 +16,7 @@
 
         </el-main>
         <el-footer>
-          <el-link type="info">tree hole start on 2023-03-17</el-link>
+          <el-link type="info">tree hole start on 2023-03-17</el-link>  <a href="http://localhost:8081/markdown/docs">note</a>
         </el-footer>
       </el-container>
     </el-container>
@@ -24,7 +24,7 @@
 </template>
 
 <script>
-import Menu from "@/views/menu/Menu.vue";
+import Menu from "@/views/menu/Menu";
 
 export default {
   name: "Main.vue",

@@ -51,7 +51,9 @@ yarn add vue-markdown-loader -D
 #### 安装github-markdown-css、highlight.js样式
 yarn add github-markdown-css  -D
 yarn add highlight.js  -D
-
+#### 安装vuepress
+yarn add -D vuepress
+> 官网教程 https://vuepress.vuejs.org/zh/guide/getting-started.html
 ### vue常见用法
 
 //笔记 todo
