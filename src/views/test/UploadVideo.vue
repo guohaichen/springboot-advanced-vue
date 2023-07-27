@@ -1,18 +1,28 @@
 <template>
   <div style="padding:20px;">
-    <el-upload
-        class="uploadUrl"
-        action="#"
-        ref="uploadForm"
-        :on-preview="handlePreview"
-        :on-remove="handleRemove"
-        :before-remove="beforeRemove"
-        multiple
-        :limit="3"
-        :http-request="uploadFile"
-        :file-list="fileList">
-      <el-button size="small" type="primary" :loading="loading">点击上传</el-button>
-    </el-upload>
+    <el-row :gutter="24">
+      <el-col :span="6">
+        <el-upload
+            class="uploadUrl"
+            action="#"
+            ref="uploadForm"
+            :on-preview="handlePreview"
+            :on-remove="handleRemove"
+            :before-remove="beforeRemove"
+            multiple
+            :limit="3"
+            :http-request="uploadBigFile"
+            :file-list="fileList">
+          <el-progress type="circle" :percentage=percentage></el-progress>
+          <el-button size="small" type="primary" :loading="loading">点击上传</el-button>
+        </el-upload>
+      </el-col>
+      <el-col :span="6">
+
+      </el-col>
+    </el-row>
+
+
   </div>
 
 </template>
@@ -26,6 +36,8 @@ export default {
       fileList: [],
       loading: false,
       uploadAction: "/common/oss/upload",
+      percentage: 0,
+      file: null,
     };
   },
   methods: {
@@ -60,6 +72,38 @@ export default {
         // 处理上传失败的回调，这里可以根据你的需要进行处理
         this.$message.error("上传失败" + error)
       });
+    },
+
+    //分片上传至后端
+    async uploadBigFile(sourceFile) {
+      this.file = sourceFile.file
+      console.log(this.file)
+      //1 MB
+      let chunkSize = 1024 * 1024;
+      let startByte = 0;
+      const formData = new FormData();
+      formData.append("filename", this.file.name)
+      while (startByte < this.file.size) {
+        const chunk = this.file.slice(startByte, startByte + chunkSize);
+        formData.append("file", chunk);
+        try {
+          await axios.post("/common/bigFile", formData, {
+            headers: {
+              "Content-Type": "multipart/form-data",
+              "Content-Range": `bytes ${startByte}-${startByte + chunk.size - 1}/${this.file.size}`,
+            },
+          });
+          startByte += chunk.size;
+        } catch (error) {
+          this.$message.error("网络错误，请重试!")
+          return;
+        }
+        //进度条
+        let val = Math.round((startByte / this.file.size) * 100)
+        console.log(val)
+        this.percentage = val
+      }
+      this.$message.success("上传成功！")
     },
   }
 }
