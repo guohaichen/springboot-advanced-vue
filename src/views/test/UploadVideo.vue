@@ -51,14 +51,15 @@ export default {
       console.log(fileList)
       return this.$confirm(`确定移除 ${file.name}？`);
     },
-    //http-request 写在该方法中表示覆盖默认文件上传
+
+
+//http-request 写在该方法中表示覆盖默认文件上传
     uploadFile(sourceFile) {
       console.log(sourceFile.file);
       this.loading = true
       //传逻辑
       const file = new FormData();
       file.append('file', sourceFile.file);
-      console.log("上传文件:", file)
       axios.post(this.uploadAction, file, {
         headers: {
           'Content-Type': 'multipart/form-data',
@@ -72,9 +73,9 @@ export default {
         // 处理上传失败的回调，这里可以根据你的需要进行处理
         this.$message.error("上传失败" + error)
       });
-    },
-
-    //分片上传至后端
+    }
+    ,
+//分片上传至后端
     async uploadBigFile(sourceFile) {
       this.file = sourceFile.file
       console.log(this.file)
@@ -82,7 +83,10 @@ export default {
       let chunkSize = 1024 * 1024;
       let startByte = 0;
       const formData = new FormData();
-      formData.append("filename", this.file.name)
+      // 生成唯一的文件名，用于在后端保存上传的分片
+      const filename = `${Date.now()}-${this.file.name}`;
+      formData.append("filename", filename)
+      //分片上传
       while (startByte < this.file.size) {
         const chunk = this.file.slice(startByte, startByte + chunkSize);
         formData.append("file", chunk);
@@ -98,13 +102,25 @@ export default {
           this.$message.error("网络错误，请重试!")
           return;
         }
+
         //进度条
-        let val = Math.round((startByte / this.file.size) * 100)
-        console.log(val)
-        this.percentage = val
+        this.percentage = Math.round((startByte / this.file.size) * 100)
       }
-      this.$message.success("上传成功！")
-    },
+      //合并分片文件
+      let fileFormData = new FormData();
+      fileFormData.append("filename", filename)
+      await axios.post("/common/bigFile/merge", fileFormData, {
+        headers: {"Content-Type": "multipart/form-data",},
+      })
+          .then(() => {
+            this.$message.success("上传成功！")
+          })
+          .catch(error => {
+            console.log(error)
+            this.$message.error("网络错误，请重试!")
+          })
+    }
+    ,
   }
 }
 </script>
