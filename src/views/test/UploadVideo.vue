@@ -75,26 +75,37 @@ export default {
       });
     }
     ,
-//分片上传至后端
+    //分片上传至后端
     async uploadBigFile(sourceFile) {
       this.file = sourceFile.file
-      console.log(this.file)
       //1 MB
       let chunkSize = 1024 * 1024;
+      let totalFileSize = this.file.size
       let startByte = 0;
-      const formData = new FormData();
       // 生成唯一的文件名，用于在后端保存上传的分片
       const filename = `${Date.now()}-${this.file.name}`;
-      formData.append("filename", filename)
+
       //分片上传
-      while (startByte < this.file.size) {
-        const chunk = this.file.slice(startByte, startByte + chunkSize);
+      while (startByte < totalFileSize) {
+        let chunk;
+        if (startByte + chunkSize < totalFileSize) {
+          // 中间分片
+          chunk = this.file.slice(startByte, startByte + chunkSize);
+        } else {
+          // 最后一个分片
+          const lastChunkSize = totalFileSize - startByte;
+          chunk = this.file.slice(startByte, startByte + lastChunkSize);
+        }
+
+        const formData = new FormData();
         formData.append("file", chunk);
+        formData.append("filename", filename);
+
         try {
           await axios.post("/common/bigFile", formData, {
             headers: {
               "Content-Type": "multipart/form-data",
-              "Content-Range": `bytes ${startByte}-${startByte + chunk.size - 1}/${this.file.size}`,
+              "Content-Range": `bytes ${startByte}-${startByte + chunk.size - 1}/${totalFileSize}`,
             },
           });
           startByte += chunk.size;
@@ -104,7 +115,7 @@ export default {
         }
 
         //进度条
-        this.percentage = Math.round((startByte / this.file.size) * 100)
+        this.percentage = Math.round((startByte / totalFileSize) * 100)
       }
       //合并分片文件
       let fileFormData = new FormData();
