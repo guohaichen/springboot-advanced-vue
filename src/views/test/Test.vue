@@ -1,17 +1,21 @@
 <template>
   <div>
-    <el-image
-        v-for="(image, index) in images"
-        :key="index"
-        :src="image.src"
-        :fit="image.fit"
-        :style="{ width: image.width + 'px', height: image.height + 'px' }"
-    ></el-image>
+<!--    <el-image-->
+<!--        v-for="(image, index) in images"-->
+<!--        :key="index"-->
+<!--        :src="image.src"-->
+<!--        :fit="image.fit"-->
+<!--        :style="{ width: image.width + 'px', height: image.height + 'px' }"-->
+<!--    ></el-image>-->
+    <Comment></Comment>
   </div>
 </template>
 
+
 <script>
+import Comment from "@/components/Comment";
 export default {
+  components:{Comment},
   data() {
     return {
       images: [

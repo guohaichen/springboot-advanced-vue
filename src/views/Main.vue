@@ -48,7 +48,7 @@ export default {
 }
 .container{
   margin: 10px;
-  background: #8de3c9;
+  /*background: #8de3c9;*/
 }
 .el-footer{
   background: #f0e68e;
