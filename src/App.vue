@@ -1,13 +1,15 @@
 <template>
   <div id="app">
     <img alt="Vue logo" src="./assets/logo.png">
-    <HelloWorld msg="Welcome to seaLand's notes"/>
-    <el-button type="primary" @click="getData">get</el-button>
-    <h3 v-for="one in list" :key="one.id">
-      {{ one.name }}
-    </h3>
+    <HelloWorld msg="hello world"/>
+    <!--    <el-button type="primary" @click="getData">get</el-button>-->
+    <!--    <h3 v-for="one in list" :key="one.id">-->
+    <!--      {{ one.name }}-->
+    <!--    </h3>-->
     <!--  路由  -->
-    <router-view></router-view>
+    <el-card class="box-card">
+      <router-view></router-view>
+    </el-card>
   </div>
 </template>
 
@@ -48,5 +50,28 @@ export default {
   text-align: center;
   color: #2c3e50;
   margin-top: 60px;
+}
+
+.text {
+  font-size: 14px;
+}
+
+.item {
+  margin-bottom: 18px;
+}
+
+.clearfix:before,
+.clearfix:after {
+  display: table;
+  content: "";
+}
+
+.clearfix:after {
+  clear: both
+}
+
+.box-card {
+  width: 480px;
+  margin: 0 auto;
 }
 </style>
