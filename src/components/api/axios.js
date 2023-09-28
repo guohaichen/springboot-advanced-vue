@@ -29,7 +29,6 @@ instance.interceptors.response.use(
     (error) => {
         console.log(error)
         if (error.response || error.response.status === 401) {
-            console.log(this)
             Message.warning("请先登录!")
             router.push("/login").then(r => r)
         } else if (error.response.status === 500) {

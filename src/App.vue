@@ -1,7 +1,7 @@
 <template>
   <div id="app">
     <img alt="Vue logo" src="./assets/logo.png">
-    <HelloWorld msg="hello world"/>
+<!--    <HelloWorld msg="hello world"/>-->
     <!--    <el-button type="primary" @click="getData">get</el-button>-->
     <!--    <h3 v-for="one in list" :key="one.id">-->
     <!--      {{ one.name }}-->
@@ -14,13 +14,13 @@
 </template>
 
 <script>
-import HelloWorld from './components/HelloWorld.vue'
+// import HelloWorld from './components/HelloWorld.vue'
 import axios from "@/components/api/axios";
 
 export default {
   name: 'App',
   components: {
-    HelloWorld
+    // HelloWorld
   },
   data() {
     return {
